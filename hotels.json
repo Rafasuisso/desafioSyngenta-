@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Lakewood",
+        "classification": 3,
+        "weekRegularTax": 110,
+        "weekRewardTax": 90,
+        "weekendRegularTax": 90,
+        "weekendRewardTax": 80
+    },
+    {
+        "name": "Bridgewood",
+        "classification": 4,
+        "weekRegularTax": 160,
+        "weekRewardTax": 110,
+        "weekendRegularTax": 60,
+        "weekendRewardTax": 50
+    },
+    {
+        "name": "Ridgewood",
+        "classification": 5,
+        "weekRegularTax": 220,
+        "weekRewardTax": 100,
+        "weekendRegularTax": 150,
+        "weekendRewardTax": 40
+    }
+]
