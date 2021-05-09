@@ -33,7 +33,6 @@ function findHotel(type, dates, hotels){
                         return accumulator + hotels[i].weekendRegularTax;
                     }
                   }, 0); 
-                  console.log("total Cost: ", totalCost)
                   prices.push({name: hotels[i].name, cost: totalCost})
             }
             break;
@@ -63,7 +62,7 @@ function findHotel(type, dates, hotels){
 
 async function readDateFile(){
     try {
-        const data = await readFile("teste3.txt", "utf-8");
+        const data = await readFile("./files/teste.txt", "utf-8");
         return data
     } catch (error) {
         return error
@@ -80,7 +79,7 @@ async function readHotelsFile(){
 
 async function writeHotelFile(file){
     try {
-        await writeFile('saida.txt', file)
+        await writeFile('./files/saida.txt', file)
     } catch (error) {
         
     }
