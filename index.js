@@ -1,18 +1,36 @@
 import {promises as fs} from 'fs';
 const { readFile, writeFile } = fs;
 
+
+const entradaPath = "./files/Entrada.txt"
+const hotelsPath = './hotels.json'
+const saidaPath = './files/saida.txt'
+
 init()
 
-async function init(){
-    const file  = await readDateFile()
-    const hotels = await readHotelsFile()
-    const dates = file.split(/[\s,:]+/)
-    const type = dates[0]
-    dates.splice(0, 1)
 
-    const hotel = findHotel(type, dates, hotels);
-    
-   await writeHotelFile(hotel)
+
+async function init(){
+    try {
+        const file  = await readDateFile(entradaPath)
+        const hotels = await readHotelsFile(hotelsPath)
+        var dates
+        var type
+        if(file instanceof String){
+            dates = file.split(/[\s,:]+/)
+            type = dates[0]
+            dates.splice(0, 1)
+            const hotel = findHotel(type, dates, hotels);
+            await writeHotelFile(hotel, saidaPath)
+        }else{
+            console.log("Falha ao ler o arquivo")
+        }
+
+
+    } catch (error) {
+        console.log(error)
+    }
+
 }
 
 function findHotel(type, dates, hotels){
@@ -60,26 +78,26 @@ function findHotel(type, dates, hotels){
     return hotel.name
 }
 
-async function readDateFile(){
+async function readDateFile(path){
     try {
-        const data = await readFile("./files/teste.txt", "utf-8");
+        const data = await readFile(path, "utf-8");
         return data
     } catch (error) {
         return error
     }
 }
-async function readHotelsFile(){
+async function readHotelsFile(path){
     try {
-        const data = JSON.parse(await readFile('./hotels.json'));
+        const data = JSON.parse(await readFile(path));
         return data
     } catch (error) {
         return error
     }
 }
 
-async function writeHotelFile(file){
+async function writeHotelFile(file, path){
     try {
-        await writeFile('./files/saida.txt', file)
+        await writeFile(path, file)
     } catch (error) {
         
     }
